@@ -9,9 +9,17 @@ import SwiftUI
 
 struct ChatView: View {
     @StateObject var vm: ChatViewModel
+    let client: LLMClientProtocol
+    
+    init(vm: ChatViewModel, client: LLMClientProtocol) {
+        self._vm = StateObject(wrappedValue: vm)
+        self.client = client
+    }
     
     var body: some View {
         VStack {
+            ClientStatusView(client: client)
+            
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 12) {
                     ForEach(vm.messages) { msg in
@@ -52,6 +60,6 @@ struct ChatView: View {
 
 #Preview {
     NavigationStack {
-        ChatView(vm: ChatViewModel(llm: LlamaRuntimeClient(modelPath: "")))
+        ChatView(vm: ChatViewModel(llm: LlamaRuntimeClient(modelPath: "")), client: LlamaRuntimeClient(modelPath: ""))
     }
 }

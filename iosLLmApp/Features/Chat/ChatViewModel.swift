@@ -53,7 +53,33 @@ final class ChatViewModel: ObservableObject {
                 
             } catch {
                 if assistantIndex < messages.count {
-                    messages[assistantIndex].text = "Something went wrong: \(error.localizedDescription)"
+                    var errorMessage = "❌ Error: \(error.localizedDescription)\n\n"
+                    
+                    // Provide helpful context based on error type
+                    if let llmError = error as? LLMError {
+                        switch llmError {
+                        case .mlxNotAvailable:
+                            errorMessage += """
+                            MLX Swift is not integrated in this project.
+                            
+                            To enable real AI responses:
+                            1. Open Xcode
+                            2. File → Add Package Dependencies
+                            3. Add: https://github.com/ml-explore/mlx-swift
+                            4. Select: MLX, MLXNN, MLXRandom
+                            5. Set iOS deployment target to 18.0+
+                            6. Rebuild project
+                            """
+                        case .modelNotFound:
+                            errorMessage += "Model file not found. Please download a model first."
+                        case .modelNotLoaded:
+                            errorMessage += "Model failed to load. Check that the model file is valid."
+                        default:
+                            errorMessage += "See QUICK_START.md for setup instructions."
+                        }
+                    }
+                    
+                    messages[assistantIndex].text = errorMessage
                 }
             }
             

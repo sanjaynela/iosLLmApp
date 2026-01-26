@@ -6,6 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		926B57552F27B2FD00864CBA /* MLX in Frameworks */ = {isa = PBXBuildFile; productRef = 926B57542F27B2FD00864CBA /* MLX */; };
+		926B57572F27B2FD00864CBA /* MLXFast in Frameworks */ = {isa = PBXBuildFile; productRef = 926B57562F27B2FD00864CBA /* MLXFast */; };
+		926B57592F27B2FD00864CBA /* MLXFFT in Frameworks */ = {isa = PBXBuildFile; productRef = 926B57582F27B2FD00864CBA /* MLXFFT */; };
+		926B575B2F27B2FD00864CBA /* MLXLinalg in Frameworks */ = {isa = PBXBuildFile; productRef = 926B575A2F27B2FD00864CBA /* MLXLinalg */; };
+		926B575D2F27B2FD00864CBA /* MLXNN in Frameworks */ = {isa = PBXBuildFile; productRef = 926B575C2F27B2FD00864CBA /* MLXNN */; };
+		926B575F2F27B2FD00864CBA /* MLXOptimizers in Frameworks */ = {isa = PBXBuildFile; productRef = 926B575E2F27B2FD00864CBA /* MLXOptimizers */; };
+		926B57612F27B2FD00864CBA /* MLXRandom in Frameworks */ = {isa = PBXBuildFile; productRef = 926B57602F27B2FD00864CBA /* MLXRandom */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		926B570F2F27A7BA00864CBA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +62,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				926B575F2F27B2FD00864CBA /* MLXOptimizers in Frameworks */,
+				926B57572F27B2FD00864CBA /* MLXFast in Frameworks */,
+				926B575B2F27B2FD00864CBA /* MLXLinalg in Frameworks */,
+				926B57552F27B2FD00864CBA /* MLX in Frameworks */,
+				926B575D2F27B2FD00864CBA /* MLXNN in Frameworks */,
+				926B57592F27B2FD00864CBA /* MLXFFT in Frameworks */,
+				926B57612F27B2FD00864CBA /* MLXRandom in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +95,7 @@
 				926B57032F27A7BA00864CBA /* iosLLmApp */,
 				926B57112F27A7BA00864CBA /* iosLLmAppTests */,
 				926B571B2F27A7BA00864CBA /* iosLLmAppUITests */,
+				926B57532F27B2FD00864CBA /* Frameworks */,
 				926B57022F27A7BA00864CBA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +108,13 @@
 				926B57182F27A7BA00864CBA /* iosLLmAppUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		926B57532F27B2FD00864CBA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +137,13 @@
 			);
 			name = iosLLmApp;
 			packageProductDependencies = (
+				926B57542F27B2FD00864CBA /* MLX */,
+				926B57562F27B2FD00864CBA /* MLXFast */,
+				926B57582F27B2FD00864CBA /* MLXFFT */,
+				926B575A2F27B2FD00864CBA /* MLXLinalg */,
+				926B575C2F27B2FD00864CBA /* MLXNN */,
+				926B575E2F27B2FD00864CBA /* MLXOptimizers */,
+				926B57602F27B2FD00864CBA /* MLXRandom */,
 			);
 			productName = iosLLmApp;
 			productReference = 926B57012F27A7BA00864CBA /* iosLLmApp.app */;
@@ -195,6 +227,9 @@
 			);
 			mainGroup = 926B56F82F27A7BA00864CBA;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				926B574B2F27ACD300864CBA /* XCRemoteSwiftPackageReference "mlx-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 926B57022F27A7BA00864CBA /* Products */;
 			projectDirPath = "";
@@ -390,6 +425,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iosLLmApp/iosLLmApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U7Q77NSCW3;
@@ -434,6 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iosLLmApp/iosLLmApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U7Q77NSCW3;
@@ -615,6 +652,55 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		926B574B2F27ACD300864CBA /* XCRemoteSwiftPackageReference "mlx-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ml-explore/mlx-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.30.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		926B57542F27B2FD00864CBA /* MLX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 926B574B2F27ACD300864CBA /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLX;
+		};
+		926B57562F27B2FD00864CBA /* MLXFast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 926B574B2F27ACD300864CBA /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXFast;
+		};
+		926B57582F27B2FD00864CBA /* MLXFFT */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 926B574B2F27ACD300864CBA /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXFFT;
+		};
+		926B575A2F27B2FD00864CBA /* MLXLinalg */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 926B574B2F27ACD300864CBA /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXLinalg;
+		};
+		926B575C2F27B2FD00864CBA /* MLXNN */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 926B574B2F27ACD300864CBA /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXNN;
+		};
+		926B575E2F27B2FD00864CBA /* MLXOptimizers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 926B574B2F27ACD300864CBA /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXOptimizers;
+		};
+		926B57602F27B2FD00864CBA /* MLXRandom */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 926B574B2F27ACD300864CBA /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXRandom;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 926B56F92F27A7BA00864CBA /* Project object */;
 }

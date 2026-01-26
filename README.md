@@ -45,25 +45,28 @@ iosLLmApp/
 - **Performance Monitoring**: Simple latency logging
 - **NaturalLanguage Integration**: Entity extraction and language detection
 - **Embedding Service**: Core ML integration structure (placeholder)
+- **Mock LLM Client**: Pattern-based responses for immediate testing
+- **MLX Integration Structure**: Ready for Apple's MLX Swift framework
+- **Model Manager**: Download and cache LLM models
+- **Model Selection UI**: Choose between mock and real LLM clients
 
-### 🚧 Placeholder / TODO
+### 🚧 Real LLM Integration (Optional)
 
-- **Real LLM Runtime**: Currently uses placeholder token generation
-- **Model Loading**: Actual model file integration
-- **Apple Foundation Models**: Replace placeholder when APIs are available
+- **MLX Swift Setup**: See `QUICK_START.md` for step-by-step instructions
+- **Model Download**: Built-in UI to download quantized models
+- **Apple Foundation Models**: Placeholder ready for future APIs
 - **Core ML Embeddings**: Add actual embedding model
 - **Prompt Truncation**: Context length management
-- **Model Download Manager**: Offline model versioning
 
 ## Getting Started
 
 ### Prerequisites
 
 - Xcode 15.0 or later
-- iOS 17.0+ deployment target
+- iOS 17.0+ deployment target (18.0+ for real MLX LLM)
 - Swift 5.9+
 
-### Setup
+### Quick Start (Mock Client - Works Immediately)
 
 1. **Clone the repository**
    ```bash
@@ -79,10 +82,22 @@ iosLLmApp/
 3. **Build and Run**
    - Select a simulator or device
    - Press ⌘R to build and run
+   - Choose "Use Mock Client" to test immediately
 
-### Adding a Real LLM Runtime
+### Adding Real LLM with MLX Swift
 
-The current implementation uses placeholder token generation. To integrate a real runtime:
+For actual AI responses using Apple's MLX framework, see **[QUICK_START.md](QUICK_START.md)** for detailed step-by-step instructions.
+
+**Quick summary:**
+1. Add MLX Swift package dependency
+2. Set iOS deployment target to 18.0+
+3. Add "Increased Memory Limit" entitlement
+4. Download a quantized model (or use built-in downloader)
+5. App will use real LLM automatically
+
+### Alternative: Adding Other LLM Runtimes
+
+To integrate other runtimes (like llama.cpp):
 
 1. **Choose a runtime**: Popular options include:
    - [llama.cpp](https://github.com/ggerganov/llama.cpp) (C++ with Swift bindings)

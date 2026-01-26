@@ -33,15 +33,21 @@ final class LlamaRuntimeClient: LLMClientProtocol {
         // 3. Loop: decode next token -> convert to String -> onToken(token)
         // 4. Stop on EOS token, max tokens, or cancellation
         
-        // Placeholder: simulate token streaming
-        let tokens = prompt.split(separator: " ").map { String($0) }
+        // Extract the last user message from the prompt for mock responses
+        let lastUserMessage = extractLastUserMessage(from: prompt)
         
-        for (index, token) in tokens.enumerated() {
+        // Generate a mock response based on the user's message
+        let mockResponse = generateMockResponse(for: lastUserMessage)
+        
+        // Stream the response token by token (simulating real LLM behavior)
+        let words = mockResponse.split(separator: " ").map { String($0) }
+        
+        for (index, word) in words.enumerated() {
             try Task.checkCancellation()
             
-            // Simulate token generation with a small delay
-            onToken(index == 0 ? token : " \(token)")
-            try await Task.sleep(nanoseconds: 20_000_000) // 20ms per token
+            // Stream each word with a space before it (except the first)
+            onToken(index == 0 ? word : " \(word)")
+            try await Task.sleep(nanoseconds: 50_000_000) // 50ms per word for realistic feel
             
             // Stop if we've reached max tokens
             if index >= config.maxTokens - 1 {
@@ -54,5 +60,47 @@ final class LlamaRuntimeClient: LLMClientProtocol {
         // - Proper tokenization/detokenization
         // - Model context management
         // - Memory management for large models
+    }
+    
+    /// Extract the last user message from the prompt
+    private func extractLastUserMessage(from prompt: String) -> String {
+        // Find the last "User: " occurrence
+        if let userRange = prompt.range(of: "User: ", options: .backwards) {
+            let afterUser = prompt[userRange.upperBound...]
+            // Find the next newline or "Assistant:" marker
+            if let endRange = afterUser.range(of: "\n") {
+                return String(afterUser[..<endRange.lowerBound]).trimmingCharacters(in: .whitespacesAndNewlines)
+            } else if let assistantRange = afterUser.range(of: "Assistant:") {
+                return String(afterUser[..<assistantRange.lowerBound]).trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+            return String(afterUser).trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        return ""
+    }
+    
+    /// Generate a mock response based on the user's message
+    private func generateMockResponse(for userMessage: String) -> String {
+        let lowercased = userMessage.lowercased()
+        
+        // Simple pattern matching for common questions
+        if lowercased.contains("who are you") || lowercased.contains("what are you") {
+            return "I'm a helpful AI assistant running on your device. I can help answer questions, have conversations, and assist with various tasks. How can I help you today?"
+        } else if lowercased.contains("hello") || lowercased.contains("hi") || lowercased.contains("hey") {
+            return "Hello! How can I assist you today?"
+        } else if lowercased.contains("what is") || lowercased.contains("what's") {
+            if lowercased.contains("2+") || lowercased.contains("2 +") {
+                return "2 + 2 equals 4. If you meant something else, could you clarify your question?"
+            }
+            return "That's an interesting question. Could you provide more details so I can give you a better answer?"
+        } else if lowercased.contains("how are you") {
+            return "I'm doing well, thank you for asking! I'm here and ready to help. What would you like to know?"
+        } else if lowercased.contains("help") {
+            return "I'd be happy to help! What do you need assistance with?"
+        } else if lowercased.isEmpty {
+            return "I'm here to help! What would you like to know?"
+        } else {
+            // Generic response that acknowledges the user's message
+            return "I understand you're asking about '\(userMessage)'. This is a placeholder response from the demo app. To get real AI responses, you'll need to integrate an actual LLM runtime like llama.cpp or use Apple's Foundation Models when available."
+        }
     }
 }
