@@ -11,7 +11,9 @@ import SwiftUI
 struct iosLLmAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                ChatView(vm: ChatViewModel(llm: LlamaRuntimeClient(modelPath: "")))
+            }
         }
     }
 }
