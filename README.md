@@ -12,6 +12,20 @@ This project is a practical implementation guide for iOS developers who want to 
 - **LLM Runtime Integration** (llama.cpp-style) for token-by-token generation
 - **SwiftUI Chat Interface** with streaming token updates
 
+### Screenshots
+
+**1. Choose your LLM client** — Mock Client (demo) or MLX Client (real AI).
+
+![LLM Client selection](LLMClientPage.PNG)
+
+**2. Model Setup** — Download a model (e.g. TinyLlama), confirm MLX Swift is available, then tap Done.
+
+![Model Setup](ModelSetupPage.PNG)
+
+**3. On-Device Chat** — Chat with the selected client; responses stream in real time.
+
+![Chat interface](ChatPage.PNG)
+
 ## Project Structure
 
 ```
